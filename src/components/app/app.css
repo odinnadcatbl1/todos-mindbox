@@ -1,0 +1,10 @@
+.app {
+    font-family: 'Poppins', sans-serif;
+}
+
+.info-text {
+    text-align: center;
+    font-size: 20px;
+    padding: 10px;
+    font-weight: 400;
+}
