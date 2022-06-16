@@ -30,8 +30,7 @@ const TodoForm = ({addTodo}) => {
                 </div>
                 <div className="todo-button">
                     <Button type="submit" className="todo-button"
-                        variant="contained"
-                        color="success">
+                        variant="contained">
                         Add
                     </Button>
                 </div>

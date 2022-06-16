@@ -10,6 +10,8 @@ import './app.css'
 const App = () => {
     const [todos, setTodos] = useState([]);
 
+    const [filter, setFilter] = useState('all');
+
     const addTodo = (todoInput) => {
         if (todoInput) {
             const newTodo = {
@@ -34,13 +36,29 @@ const App = () => {
     };
 
     const filterTodos = (todos, filter) => {
-        
-    }
-
+        switch(filter) {
+          case 'all':
+            return todos;
+          case 'active':
+            return todos.filter((item) => !item.done);
+          case 'done':
+            return todos.filter((item) => item.done);
+          default:
+            return todos;
+        }
+      };
+    
+    const onFilterChange = (filter) => {
+        setFilter(filter);
+    };
+    
     const TodoList = () => {
+
+        const visibleTodos = filterTodos(todos, filter);
+
         return (
             <div className="todo-list">
-                {todos.map((todo) => {
+                {visibleTodos.map((todo) => {
                     return (
                         <TodoItem 
                             key={todo.id}
@@ -62,7 +80,9 @@ const App = () => {
             <div className="info-text">{todoCount} items left, {doneCount} items done</div>
             <TodoForm addTodo={addTodo}/>
             <TodoList />
-            <ItemFilter />
+            <ItemFilter
+                filter={filter}
+                onFilterChange={onFilterChange}/>
         </div>
     );
 };
